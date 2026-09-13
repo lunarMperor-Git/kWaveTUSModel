@@ -1,0 +1,87 @@
+function simulation_settings = getSimulationSettings()
+
+% Various Simulation Settings for the Model
+% NOTE: used for simulations for back of head, need to revise code to
+% simulate other angles/areas of head
+%
+% Signal Settings:
+%    f0                 - transducer frequency in Hz
+%    source_strength    - transducer source strength in Pa NOTE: does NOT
+%                       - represent source strength at focal position,
+%                         needs source_strength_cal()
+%
+%    signal_type        - 1 = toneBurst, 2 = continuous wave
+%    signal_PRF         - pulse repetition frequency for toneBurst
+%    signal_num_cycles  - number of cycles of toneBurst
+%    signal_duty_cycle  - duty cycle of toneBurst
+%    target_Isppa       - scales p_amp to target Isppa if not set to 0
+%
+%
+% Transducer Settings:
+%    focal_pos          - focal position coordinates, get from 3D Slicer
+%    offset             - padding added to the simulation grid if needed
+%    disk_aperture      - aperture diameter of transducer in mm
+%    disk_radius        - focal radius of transducer in mm
+%    incidence_angle    - incidence angle, NOTE: needs revision
+%
+% Pulse Train Settings:
+%    duty_cycle         - duty cycle of pulse train
+%    t_on               - duration of pulse on in seconds (heating)
+%    t_off              - duration of pulse off in seconds (cooling)
+%    repetitions        - number of pulses
+%
+% Medium Settings:
+%    mask_path          - file path of the tissue masks
+%    load_mask          - 1 = masks already in .mat format
+%                         2 = m2m folder from SimNIBS
+%    medium_smooth      - smooth the medium sound speed and density 
+%                         with K-Wave's smooth()
+%    medium_scale       - original scale of masks in mm, usually 1 mm
+%    
+% Computational Settings:
+%    code_type          - 1 = CPU with C++ implementation
+%                         2 = GPU, WARNING: needs lots of memory!
+%                         3 = Normal kSpaceFirstOrder3D
+%    ppw                - points per wave of the simulation
+%    cfl                - CFL number for the simulation, 1.5 suggested
+
+
+
+% signal settings
+simulation_settings.f0                      = 500e3;                % Hz
+simulation_settings.source_strength         = 79705;                % Pa
+simulation_settings.signal_type             = 2;                    % 1 = toneBurst, 2 = CW
+simulation_settings.signal_PRF              = 10;                   % Hz
+simulation_settings.signal_num_cycles       = 40;
+simulation_settings.signal_duty_cycle       = 30;
+simulation_settings.target_Isppa            = 0;                    % W/cm^2
+
+
+% transducer settings
+simulation_settings.focal_pos               = [81, 66, 128];        % mm
+simulation_settings.offset                  = [0, 0, 10, 0, 0, 0];  % mm
+simulation_settings.disk_aperture           = 64;                   % mm
+simulation_settings.disk_radius             = 64;                   % mm 
+simulation_settings.incidence_angle         = 0;                    % degrees
+
+
+% pulse train settings
+simulation_settings.duty_cycle              = 0.30;
+simulation_settings.t_on                    = 40;                   % seconds
+simulation_settings.t_off                   = 40;                   % seconds
+simulation_settings.repetitions             = 1;
+
+
+% medium settings
+simulation_settings.mask_path               = 'C:\Users\gshen3\Downloads';
+simulation_settings.load_mask               = 2;                    % 1 = load pre-existing .mat mask
+                                                                    % 2 = load mask from m2m folder
+simulation_settings.medium_smooth           = true;
+simulation_settings.medium_scale            = 1;                    % mm
+
+% computational settings
+simulation_settings.code_type               = 2;
+simulation_settings.ppw                     = 6;
+simulation_settings.cfl                     = 0.2; 
+
+

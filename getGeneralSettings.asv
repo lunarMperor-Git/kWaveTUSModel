@@ -1,0 +1,88 @@
+function general_settings = getGeneralSettings()
+
+% General Medium Settings for the Model
+% NOTE: conversion from np/m to db/cm (factor of 0.08686) applied to ac
+% Values used from BabelBrain: https://ieeexplore.ieee.org/document/10121198
+%
+% Tissue Types:
+%   water       default type for voxels not skull, skin, brain
+%   air         can change in KWaveTUSModel to substitute water
+%   skull       skull properties if only one layer of skull needed
+%   cortical    
+%   trabecular  
+%   skin
+%
+% Parameters:
+%   c       sound speed (m/s)
+%   rho     density (kg/m^3)
+%   ac      alpha coefficient (dB/MHz^y/cm)
+%   sh      specific heat (J/kg/K)
+%   tc      thermal conductivity (W/m/K)
+%   pc      perfusion coefficient (1/s)
+%   abs     absorption fraction of tissue that turns into heat (unitless)
+%
+% Other Attributes:
+%   alpha_power         Power Absorption Law power (y)
+%   blood_ambient_t     ambient temperature of blood
+
+
+%
+general_settings.water_c            = 1500;              % m/s
+general_settings.water_rho          = 1000;              % kg/m^3
+general_settings.water_ac           = 0;                 % dB/(MHz^y*cm)
+general_settings.water_sh           = 4180;              % J/kg/K
+general_settings.water_tc           = 0.6;               % W/m/K
+general_settings.water_pc           = 0;                 % 1/s
+
+general_settings.air_c              = 343;               % m/s
+general_settings.air_rho            = 1.204;             % kg/m^3
+general_settings.air_ac             = 0.016;             % dB/(MHz^y*cm)
+general_settings.air_sh             = 718;               % J/kg/K
+general_settings.air_tc             = 0.0257;            % W/m/K
+general_settings.air_pc             = 0;                 % 1/s
+
+general_settings.skull_c            = 2415;              % m/s
+general_settings.skull_rho          = 1896;              % kg/m^3
+general_settings.skull_ac           = 162  * 0.08686;    % dB/(MHz^y*cm)
+general_settings.skull_sh           = 1793;              % J/kg/K
+general_settings.skull_tc           = 0.315;             % W/m/K
+general_settings.skull_pc           = 5.88e-6;           % 1/s
+
+general_settings.cortical_c         = 2476;              % m/s
+general_settings.cortical_rho       =  1896;             % kg/m^3
+general_settings.cortical_ac        =  163  * 0.08686;   % dB/(MHz^y*cm)
+general_settings.cortical_sh        = 1313;              % J/kg/K
+general_settings.cortical_tc        =  0.32;             % W/m/K
+general_settings.cortical_pc        =  4.02e-6;          % 1/s
+
+general_settings.trabecular_c       =  2205;             % m/s
+general_settings.trabecular_rho     =  1738;             % kg/m^3
+general_settings.trabecular_ac      =  162  * 0.08686;   % dB/(MHz^y*cm)
+general_settings.trabecular_sh      =  2274;             % J/kg/K
+general_settings.trabecular_tc      =  0.31;             % W/m/K
+general_settings.trabecular_pc      =  7.59e-6;          % 1/s
+
+general_settings.brain_c            =  1562;             % m/s
+general_settings.brain_rho          =  1041;             % kg/m^3
+general_settings.brain_ac           =  6.9  * 0.08686;   % dB/(MHz^y*cm)
+general_settings.brain_sh           = 3630;              % J/kg/K
+general_settings.brain_tc           = 0.51;              % W/m/K
+general_settings.brain_pc           = 1.48e-4;           % 1/s
+
+general_settings.skin_c             = 1537;              % m/s
+general_settings.skin_rho           = 1116;              % kg/m^3
+general_settings.skin_ac            = 4.6  * 0.08686;    % dB/(MHz^y*cm)
+general_settings.skin_sh            = 3391;              % J/kg/K
+general_settings.skin_tc            = 0.37;              % W/m/K
+general_settings.skin_pc            = 2.80e-5;           % 1/s
+
+general_settings.skin_abs           = 0.85;
+general_settings.brain_abs          = 0.85;
+general_settings.cortical_abs       = 0.16;
+general_settings.trabecular_abs     = 0.15;
+
+
+general_settings.alpha_power        = 2;
+
+general_settings.blood_ambient_t    = 37;               % Celsius
+
