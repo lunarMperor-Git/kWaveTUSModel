@@ -1,7 +1,9 @@
 # kWaveTUSModel
+Written by Guanfa (Felix) Shen, last modified: 8/13/2026
+
 MATLAB/K-Wave-based computational model of Transcranial Ultrasound Stimulation
 
-This model models acoustic and thermal transcranial ultrasound simulations by using K-Wave and MATLAB. 
+This model models acoustic and thermal transcranial ultrasound simulations by using K-Wave and MATLAB. User inputs a m2m file or a .mat file of a head MRI, then specify medium, source, sensor, and grid properties in general_settings and simulation_settings. Outputs include figures of both acoustic and thermal simulations and numerical results from the simulation. This model was created to compare the BabelBrain and k-wave models, specifically differences in their underlying acoustic mathematical methods (FDTD vs k-Space Pseudospectral Method).
 
 
 # Model Package:
@@ -48,19 +50,7 @@ o	In the model, you must input the Cartesian coordinates (x, y, z)!
 5.	See below (or the exampleMain function packaged with the kWaveTUSModel) for writing a script to begin simulations.
 
 # Example Simulation Script:
-% Before running simulations: get m2m folder and get trajectory/focal pos  from 3D Slicer
-% first, get general and simulation settings
-general_settings = getGeneralSettings();
-simulation_settings = getSimulationSettings();
-
-% second, customize settings
-% (these three are the most important)
-simulation_settings.ppw = 3;
-simulation_settings.mask_path = 'C:\Users\Lunar\m2m_subject01';
-simulation_settings.focal_pos = [81, 66, 128];
-
-% third, call the model and get outputs
-out = kWaveTUSModel(general_settings, simulation_settings); 
+See exampleMain.m for an example main file.
 
 # Model Pipeline
 Before the model:
